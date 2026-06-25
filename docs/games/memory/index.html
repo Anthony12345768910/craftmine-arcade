@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CraftMine Memory — Match tech-themed cards in this Minecraft-style memory game. Find all 8 pairs to win!">
+    <title>Memory — CraftMine Arcade</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="memory.css">
+</head>
+<body>
+
+<!-- ====== GAME HEADER ====== -->
+<div class="game-header">
+    <a href="../../index.html" class="btn btn-secondary btn-sm">← Arcade</a>
+    <span class="game-header-title">⛏️ Memory</span>
+    <div id="game-user-area">
+        <span id="game-user" class="navbar-user" style="display:none;"></span>
+    </div>
+</div>
+
+<!-- ====== TITLE SCREEN ====== -->
+<div id="title-screen" class="title-screen">
+    <h1>🧠 Memory</h1>
+    <p style="font-family: var(--font-pixel); font-size: 0.6rem; color: var(--text-secondary); line-height: 2; margin-bottom: 24px;">
+        Flip cards. Find the pairs. Use your memory!
+    </p>
+
+    <div class="how-to-play">
+        <h3>How to Play</h3>
+        <ul>
+            <li>🃏 Click any card to flip it face up</li>
+            <li>🔍 Flip a second card to try to find a match</li>
+            <li>✅ Matching pairs stay face up</li>
+            <li>❌ Mismatches flip back after 1 second</li>
+            <li>🏆 Match all 8 pairs to win!</li>
+            <li>⚡ Try to win in as few moves as possible</li>
+        </ul>
+    </div>
+
+    <button class="btn btn-primary" onclick="startMemory()" style="margin-top: 16px; font-size: 0.8rem; padding: 14px 40px;">
+        ▶ Play
+    </button>
+</div>
+
+<!-- ====== GAME AREA ====== -->
+<div id="game-area" class="hidden">
+    <div class="memory-wrapper">
+
+        <!-- Status bar -->
+        <div class="memory-status-bar">
+            <div class="memory-info-box">
+                <span class="memory-info-label">Moves</span>
+                <span class="memory-info-value" id="mem-moves">0</span>
+            </div>
+            <div class="memory-info-box">
+                <span class="memory-info-label">Pairs</span>
+                <span class="memory-info-value" id="mem-matched">0</span>
+                <span class="memory-info-label" style="margin-top:2px;">of 8</span>
+            </div>
+            <div class="memory-info-box">
+                <span class="memory-info-label">Time</span>
+                <span class="memory-info-value" id="mem-time">0:00</span>
+            </div>
+        </div>
+
+        <!-- Card Grid -->
+        <div class="memory-grid" id="memory-grid">
+            <!-- Cards rendered by JS -->
+        </div>
+
+        <!-- Restart button -->
+        <div style="margin-top: 24px;">
+            <button class="btn btn-danger btn-sm" onclick="startMemory()">🔄 Restart</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ====== WIN OVERLAY ====== -->
+<div class="win-overlay" id="win-overlay">
+    <div class="win-box">
+        <span class="win-trophy">🏆</span>
+        <h2>You Win!</h2>
+        <div class="win-stat">Moves: <span id="win-moves">0</span></div>
+        <div class="win-stat" style="color: var(--diamond-blue);">Time: <span id="win-time">0:00</span></div>
+        <div class="game-over-actions" style="margin-top: 24px;">
+            <button class="btn btn-primary" onclick="startMemory()">🔄 Play Again</button>
+            <a href="../../index.html" class="btn btn-secondary">← Back to Arcade</a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/auth.js"></script>
+<script src="memory.js"></script>
+<script>
+    // Show username if logged in
+    const user = getUser();
+    if (user) {
+        const el = document.getElementById('game-user');
+        el.style.display = 'inline';
+        el.textContent = '⚔️ ' + user.username;
+    }
+</script>
+
+</body>
+</html>

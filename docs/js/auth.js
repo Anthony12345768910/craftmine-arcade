@@ -98,6 +98,7 @@ if (IS_STATIC_HOST) {
         if (urlStr.includes('/api/scores/')) {
             const parts = urlStr.split('?')[0].split('/');
             const game = parts[parts.length - 1];
+            // Safe URL parsing for relative paths
             const base = window.location.origin + window.location.pathname;
             const urlObj = new URL(urlStr, base);
             const limit = parseInt(urlObj.searchParams.get('limit')) || 10;

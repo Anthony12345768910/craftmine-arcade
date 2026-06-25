@@ -1,0 +1,121 @@
+/* =============================================================
+   Tetris — Game-Specific Styles (Minecraft Block Theme)
+   ============================================================= */
+
+.tetris-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Side panels */
+.tetris-side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 140px;
+}
+
+/* Info boxes (Score, Level, Lines, Next) */
+.tetris-info-box {
+    background: linear-gradient(180deg, #1E2A3A 0%, #162032 100%);
+    border: 3px solid var(--border-color);
+    padding: 12px;
+    text-align: center;
+}
+
+.tetris-info-label {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.tetris-info-value {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--gold-yellow);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+/* Board wrapper */
+.tetris-board-wrapper {
+    border: 4px solid var(--stone-dark);
+    box-shadow:
+        inset 0 0 0 2px rgba(0,0,0,0.5),
+        0 0 30px rgba(0,0,0,0.5),
+        0 0 60px rgba(0,0,0,0.3);
+    background: #0A0A0A;
+    line-height: 0;
+}
+
+#tetris-canvas {
+    display: block;
+    image-rendering: pixelated;
+}
+
+/* Next piece canvas */
+#next-canvas {
+    display: block;
+    margin: 0 auto;
+    image-rendering: pixelated;
+    background: rgba(10, 10, 10, 0.5);
+}
+
+/* Controls hint */
+.tetris-controls-hint {
+    background: linear-gradient(180deg, #1E2A3A 0%, #162032 100%);
+    border: 3px solid var(--border-color);
+    padding: 12px;
+}
+
+.controls-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.controls-mini span {
+    font-family: var(--font-pixel);
+    font-size: 0.4rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* Line clear flash animation */
+@keyframes lineClearFlash {
+    0% { opacity: 1; background: #fff; }
+    50% { opacity: 0.5; background: var(--gold-yellow); }
+    100% { opacity: 0; }
+}
+
+/* =============================================================
+   Responsive
+   ============================================================= */
+@media (max-width: 768px) {
+    .tetris-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .tetris-side-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        min-width: unset;
+    }
+    .tetris-info-box {
+        min-width: 100px;
+    }
+    #tetris-canvas {
+        width: 250px;
+        height: 500px;
+    }
+    .tetris-board-wrapper {
+        max-width: 258px;
+    }
+}

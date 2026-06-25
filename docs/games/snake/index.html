@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CraftMine Snake — Voxel isometric snake game in Minecraft style. Eat apples, grow your snake, and chase the high score!">
+    <title>Snake — CraftMine Arcade</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="snake.css">
+</head>
+<body>
+
+<!-- ====== GAME HEADER ====== -->
+<div class="game-header">
+    <a href="../../index.html" class="btn btn-secondary btn-sm">← Arcade</a>
+    <span class="game-header-title">⛏️ Snake</span>
+    <div id="game-user-area">
+        <span id="game-user" class="navbar-user" style="display:none;"></span>
+    </div>
+</div>
+
+<!-- ====== TITLE SCREEN ====== -->
+<div id="title-screen" class="title-screen">
+    <h1>🐍 Snake</h1>
+    <p style="font-family: var(--font-pixel); font-size: 0.6rem; color: var(--text-secondary); line-height: 2; margin-bottom: 24px;">
+        Eat apples. Grow your snake. Don't crash!
+    </p>
+
+    <div class="how-to-play">
+        <h3>How to Play</h3>
+        <ul>
+            <li><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> Move the snake</li>
+            <li>🍎 Eat the red apple block to grow</li>
+            <li>⚡ Snake speeds up as you score</li>
+            <li>💀 Hit yourself = game over</li>
+            <li><kbd>P</kbd> Pause / unpause</li>
+        </ul>
+    </div>
+
+    <button class="btn btn-primary" onclick="startSnake()" style="margin-top: 16px; font-size: 0.8rem; padding: 14px 40px;">
+        ▶ Play
+    </button>
+</div>
+
+<!-- ====== GAME AREA ====== -->
+<div id="game-area" class="hidden">
+    <div class="snake-wrapper">
+
+        <!-- Status bar -->
+        <div class="snake-status-bar">
+            <div class="snake-info-box">
+                <span class="snake-info-label">Score</span>
+                <span class="snake-info-value" id="snake-score">0</span>
+            </div>
+            <div class="snake-info-box">
+                <span class="snake-info-label">Best</span>
+                <span class="snake-info-value" id="snake-hs">0</span>
+            </div>
+            <div class="snake-info-box">
+                <span class="snake-info-label">Speed</span>
+                <span class="snake-info-value" id="snake-speed">1</span>
+            </div>
+        </div>
+
+        <!-- Canvas -->
+        <div class="snake-canvas-container">
+            <canvas id="snake-canvas"></canvas>
+        </div>
+
+        <!-- Keyboard hint -->
+        <div class="snake-controls">
+            <span class="snake-key-hint"><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> Move &nbsp;|&nbsp; <kbd>P</kbd> Pause</span>
+        </div>
+
+        <!-- Mobile d-pad -->
+        <div class="snake-dpad">
+            <div class="dpad-row">
+                <div class="dpad-spacer"></div>
+                <button class="dpad-btn" ontouchstart="dpadPress('up')" onclick="dpadPress('up')">▲</button>
+                <div class="dpad-spacer"></div>
+            </div>
+            <div class="dpad-row">
+                <button class="dpad-btn" ontouchstart="dpadPress('left')" onclick="dpadPress('left')">◀</button>
+                <div class="dpad-spacer"></div>
+                <button class="dpad-btn" ontouchstart="dpadPress('right')" onclick="dpadPress('right')">▶</button>
+            </div>
+            <div class="dpad-row">
+                <div class="dpad-spacer"></div>
+                <button class="dpad-btn" ontouchstart="dpadPress('down')" onclick="dpadPress('down')">▼</button>
+                <div class="dpad-spacer"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ====== PAUSE OVERLAY ====== -->
+<div class="pause-overlay" id="snake-pause">
+    <div style="text-align:center;">
+        <div class="pause-text">⏸ PAUSED</div>
+        <p style="font-family: var(--font-pixel); font-size: 0.5rem; color: var(--text-secondary); margin-top: 16px;">
+            Press P to resume
+        </p>
+    </div>
+</div>
+
+<!-- ====== GAME OVER OVERLAY ====== -->
+<div class="game-over-overlay" id="snake-game-over">
+    <div class="game-over-box">
+        <h2>💀 Game Over</h2>
+        <div class="game-over-score">Score: <span id="snake-final-score">0</span></div>
+        <div class="game-over-score" style="color: var(--diamond-blue);">Best: <span id="snake-final-hs">0</span></div>
+        <div class="game-over-actions">
+            <button class="btn btn-primary" onclick="startSnake()">Play Again</button>
+            <a href="../../index.html" class="btn btn-secondary">Back to Arcade</a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/auth.js"></script>
+<script src="snake.js"></script>
+<script>
+    // Show username if logged in
+    const user = getUser();
+    if (user) {
+        const el = document.getElementById('game-user');
+        el.style.display = 'inline';
+        el.textContent = '⚔️ ' + user.username;
+    }
+</script>
+
+</body>
+</html>

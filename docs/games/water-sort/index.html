@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CraftMine Water Sort — Sort colorful potions into tubes in this Minecraft-themed puzzle game.">
+    <title>Water Sort — CraftMine Arcade</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="water-sort.css">
+</head>
+<body>
+
+<!-- ====== GAME HEADER ====== -->
+<div class="game-header">
+    <a href="../../index.html" class="btn btn-secondary btn-sm">← Arcade</a>
+    <span class="game-header-title">⛏️ Water Sort</span>
+    <div id="game-user-area">
+        <span id="game-user" class="navbar-user" style="display:none;"></span>
+    </div>
+</div>
+
+<!-- ====== TITLE SCREEN ====== -->
+<div id="title-screen" class="title-screen">
+    <h1>Water Sort</h1>
+    <p style="font-family: var(--font-pixel); font-size: 0.6rem; color: var(--text-secondary); line-height: 2; margin-bottom: 24px;">
+        Sort the potions. One color per tube. Don't spill!
+    </p>
+
+    <div class="how-to-play">
+        <h3>How to Play</h3>
+        <ul>
+            <li>🧪 Click a tube to pick up its top color</li>
+            <li>🧪 Click another tube to pour it in</li>
+            <li>✅ You can only pour onto the <strong style="color: var(--gold-yellow);">same color</strong> or into an <strong style="color: var(--gold-yellow);">empty tube</strong></li>
+            <li>🏆 Sort all tubes so each has only one color</li>
+            <li>↩️ Use <strong>Undo</strong> if you make a mistake</li>
+            <li>🔄 Use <strong>Restart</strong> to retry the level</li>
+        </ul>
+    </div>
+
+    <button class="btn btn-primary" onclick="startGame()" style="margin-top: 16px; font-size: 0.8rem; padding: 14px 40px;">
+        ▶ Play
+    </button>
+</div>
+
+<!-- ====== GAME AREA (hidden until play) ====== -->
+<div id="game-area" class="hidden">
+
+    <!-- Status bar -->
+    <div class="ws-status-bar">
+        <div class="ws-info-box">
+            <span class="ws-info-label">Level</span>
+            <span class="ws-info-value" id="ws-level">1</span>
+        </div>
+        <div class="ws-info-box">
+            <span class="ws-info-label">Moves</span>
+            <span class="ws-info-value" id="ws-moves">0</span>
+        </div>
+        <div class="ws-info-box">
+            <span class="ws-info-label">Score</span>
+            <span class="ws-info-value" id="ws-score">0</span>
+        </div>
+    </div>
+
+    <!-- Tubes container -->
+    <div class="ws-tubes-container" id="tubes-container">
+        <!-- Tubes rendered dynamically by JS -->
+    </div>
+
+    <!-- Action buttons -->
+    <div class="ws-actions">
+        <button class="btn btn-secondary btn-sm" id="undo-btn" onclick="undoMove()" disabled>↩ Undo</button>
+        <button class="btn btn-danger btn-sm" onclick="restartLevel()">🔄 Restart</button>
+    </div>
+</div>
+
+<!-- ====== WIN OVERLAY ====== -->
+<div class="game-over-overlay" id="win-overlay">
+    <div class="game-over-box" style="border-color: var(--creeper-green);">
+        <h2 style="color: var(--creeper-green);">Level Complete! 🎉</h2>
+        <div class="game-over-score" id="win-moves">Moves: 0</div>
+        <div class="game-over-score" id="win-score" style="color: var(--gold-yellow);">Score: 0</div>
+        <div class="game-over-actions">
+            <button class="btn btn-primary" onclick="nextLevel()">Next Level ▶</button>
+            <a href="../../index.html" class="btn btn-secondary">Back to Arcade</a>
+        </div>
+    </div>
+</div>
+
+<!-- ====== GAME COMPLETE OVERLAY (after many levels) ====== -->
+<div class="game-over-overlay" id="complete-overlay">
+    <div class="game-over-box" style="border-color: var(--gold-yellow);">
+        <h2 style="color: var(--gold-yellow);">🏆 Amazing Run!</h2>
+        <div class="game-over-score" id="complete-level">Levels: 0</div>
+        <div class="game-over-score" id="complete-score" style="color: var(--gold-yellow);">Total Score: 0</div>
+        <div id="ws-submit-area" class="mt-lg">
+            <p id="ws-submit-msg" style="font-family: var(--font-pixel); font-size: 0.5rem; color: var(--text-secondary);">
+                Log in to save your score!
+            </p>
+            <button id="ws-submit-btn" class="btn btn-primary btn-sm hidden" onclick="submitWsScore()">
+                Submit Score
+            </button>
+        </div>
+        <div class="game-over-actions">
+            <button class="btn btn-primary" onclick="startGame()">Play Again</button>
+            <a href="../../index.html" class="btn btn-secondary">Back to Arcade</a>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/auth.js"></script>
+<script src="water-sort.js"></script>
+<script>
+    // Show username if logged in
+    const user = getUser();
+    if (user) {
+        const el = document.getElementById('game-user');
+        el.style.display = 'inline';
+        el.textContent = '⚔️ ' + user.username;
+    }
+</script>
+
+</body>
+</html>
