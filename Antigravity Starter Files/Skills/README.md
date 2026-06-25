@@ -21,6 +21,10 @@ After a project:
 Add a new row every time you create a skill file.
 
 - `auth-implementation-patterns/SKILL.md` — Safe patterns for login, signup, sessions, and user data.
+- `uiux-designer/SKILL.md` — Design intelligence guide featuring 50+ styles, 97 color palettes, and 99 UX guidelines.
+- `frontend-expert/SKILL.md` — Frontend expertise for architecture, React/Next.js patterns, performance, and best practices.
+- `browser-automation/SKILL.md` — Tools and patterns for interacting with web browsers and web scraping.
+- `code-reviewer/SKILL.md` — Advanced code review guidelines and heuristics.
 
 # Skill File Template
 When creating a new skill, copy this format into a new .md file:

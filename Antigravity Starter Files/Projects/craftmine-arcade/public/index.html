@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CraftMine Arcade — A Minecraft-themed web arcade with classic games, leaderboards, and pixel-perfect fun.">
+    <title>CraftMine Arcade — Play Games</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-logo" onclick="window.location.href='/'">
+        ⛏️ Craft<span>Mine</span> Arcade
+    </div>
+    <!-- Navbar actions removed -->
+</nav>
+
+<!-- ====== PARALLAX HERO (Minecraft.net style) ====== -->
+<section class="parallax-hero" id="parallax-hero">
+    <!-- Layer 1: Sky + Sun -->
+    <div class="parallax-layer parallax-sky" data-speed="0.05">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/parallaxC/scene_default/day/Sky_Sun.png"
+             alt="" role="presentation" class="parallax-img">
+    </div>
+    <!-- Layer 2: Clouds -->
+    <div class="parallax-layer parallax-clouds" data-speed="0.1">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/parallaxC/scene_default/day/Clouds.png"
+             alt="" role="presentation" class="parallax-img">
+    </div>
+    <!-- Layer 3: Background hills -->
+    <div class="parallax-layer parallax-bg" data-speed="0.15">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/parallaxC/scene_default/day/BG_Near.png"
+             alt="" role="presentation" class="parallax-img">
+    </div>
+    <!-- Layer 4: Focus (cherry blossom scene) -->
+    <div class="parallax-layer parallax-focus" data-speed="0.25">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/parallaxC/scene_default/day/Focus_Cherry.png"
+             alt="" role="presentation" class="parallax-img">
+    </div>
+    <!-- Layer 5: Foreground -->
+    <div class="parallax-layer parallax-foreground" data-speed="0.4">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/parallaxC/scene_default/day/Foreground.png"
+             alt="" role="presentation" class="parallax-img">
+    </div>
+    <!-- Title overlay -->
+    <div class="parallax-content">
+        <h1 class="parallax-title">⛏️ CraftMine Arcade</h1>
+        <p class="parallax-subtitle">Mine blocks. Stack pieces. Sort potions. Climb the leaderboard.</p>
+    </div>
+    <!-- Bottom fade into page background -->
+    <div class="parallax-fade"></div>
+</section>
+
+<!-- ====== GAME GRID ====== -->
+<h2 class="section-header">🎮 Choose Your Game</h2>
+<div class="game-grid" id="game-grid">
+
+    <!-- Tetris Card -->
+    <div class="game-card" onclick="window.location.href='/games/tetris/'" id="card-tetris">
+        <div class="game-card-image" id="tetris-card-img" style="
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 100%);
+            display: flex; align-items: center; justify-content: center;
+        ">
+            <!-- Inline pixel art for Tetris card -->
+            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="image-rendering: pixelated;">
+                <!-- T piece -->
+                <rect x="60" y="20" width="20" height="20" fill="#A020F0" stroke="#7B18B8" stroke-width="2"/>
+                <rect x="40" y="40" width="20" height="20" fill="#A020F0" stroke="#7B18B8" stroke-width="2"/>
+                <rect x="60" y="40" width="20" height="20" fill="#A020F0" stroke="#7B18B8" stroke-width="2"/>
+                <rect x="80" y="40" width="20" height="20" fill="#A020F0" stroke="#7B18B8" stroke-width="2"/>
+                <!-- I piece -->
+                <rect x="120" y="20" width="20" height="20" fill="#00CED1" stroke="#00A5A8" stroke-width="2"/>
+                <rect x="120" y="40" width="20" height="20" fill="#00CED1" stroke="#00A5A8" stroke-width="2"/>
+                <rect x="120" y="60" width="20" height="20" fill="#00CED1" stroke="#00A5A8" stroke-width="2"/>
+                <rect x="120" y="80" width="20" height="20" fill="#00CED1" stroke="#00A5A8" stroke-width="2"/>
+                <!-- O piece -->
+                <rect x="40" y="80" width="20" height="20" fill="#FCDC5F" stroke="#D4B84A" stroke-width="2"/>
+                <rect x="60" y="80" width="20" height="20" fill="#FCDC5F" stroke="#D4B84A" stroke-width="2"/>
+                <rect x="40" y="100" width="20" height="20" fill="#FCDC5F" stroke="#D4B84A" stroke-width="2"/>
+                <rect x="60" y="100" width="20" height="20" fill="#FCDC5F" stroke="#D4B84A" stroke-width="2"/>
+                <!-- S piece -->
+                <rect x="100" y="100" width="20" height="20" fill="#50C878" stroke="#3BA35D" stroke-width="2"/>
+                <rect x="120" y="100" width="20" height="20" fill="#50C878" stroke="#3BA35D" stroke-width="2"/>
+                <rect x="80" y="120" width="20" height="20" fill="#50C878" stroke="#3BA35D" stroke-width="2"/>
+                <rect x="100" y="120" width="20" height="20" fill="#50C878" stroke="#3BA35D" stroke-width="2"/>
+                <!-- Grid lines -->
+                <rect x="20" y="10" width="160" height="140" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="game-card-body">
+            <h3 class="game-card-title">Tetris</h3>
+            <p class="game-card-desc">The classic block-stacking puzzle. Clear lines, rack up combos, and chase the high score!</p>
+            <div class="game-card-footer">
+                <span class="game-card-score" id="tetris-best">High Score: ---</span>
+                <button class="btn btn-primary btn-sm">Play ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Water Sort Card -->
+    <div class="game-card" onclick="window.location.href='/games/water-sort/'" id="card-water-sort">
+        <div class="game-card-image" id="watersort-card-img" style="
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 100%);
+            display: flex; align-items: center; justify-content: center;
+        ">
+            <!-- Inline pixel art for Water Sort card -->
+            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="image-rendering: pixelated;">
+                <!-- Tube 1 -->
+                <rect x="30" y="20" width="30" height="120" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="2"/>
+                <rect x="32" y="110" width="26" height="28" fill="#FF3B3B"/>
+                <rect x="32" y="82" width="26" height="28" fill="#4AEDD9"/>
+                <rect x="32" y="54" width="26" height="28" fill="#FCDC5F"/>
+                <rect x="32" y="26" width="26" height="28" fill="#A020F0"/>
+                <!-- Tube 2 -->
+                <rect x="75" y="20" width="30" height="120" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="2"/>
+                <rect x="77" y="110" width="26" height="28" fill="#4AEDD9"/>
+                <rect x="77" y="82" width="26" height="28" fill="#FF3B3B"/>
+                <rect x="77" y="54" width="26" height="28" fill="#A020F0"/>
+                <rect x="77" y="26" width="26" height="28" fill="#50C878"/>
+                <!-- Tube 3 -->
+                <rect x="120" y="20" width="30" height="120" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="2"/>
+                <rect x="122" y="110" width="26" height="28" fill="#50C878"/>
+                <rect x="122" y="82" width="26" height="28" fill="#FCDC5F"/>
+                <rect x="122" y="54" width="26" height="28" fill="#FF3B3B"/>
+                <!-- Tube 4 (empty) -->
+                <rect x="165" y="20" width="30" height="120" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" rx="2"/>
+            </svg>
+        </div>
+        <div class="game-card-body">
+            <h3 class="game-card-title">Water Sort</h3>
+            <p class="game-card-desc">Pour potions between tubes to sort them by color. A relaxing puzzle with tricky levels!</p>
+            <div class="game-card-footer">
+                <span class="game-card-score" id="watersort-best">High Score: ---</span>
+                <button class="btn btn-primary btn-sm">Play ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snake Card -->
+    <div class="game-card" onclick="window.location.href='/games/snake/'" id="card-snake">
+        <div class="game-card-image" id="snake-card-img" style="
+            background: linear-gradient(135deg, #0A1A08 0%, #0D2A0A 100%);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        ">
+            <!-- Isometric voxel snake preview -->
+            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="image-rendering: pixelated;">
+                <!-- Ground tiles (isometric) -->
+                <polygon points="100,10 130,25 100,40 70,25" fill="#4A7A28" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="130,25 160,40 130,55 100,40" fill="#3D6822" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="70,25 100,40 70,55 40,40" fill="#3D6822" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="100,40 130,55 100,70 70,55" fill="#4A7A28" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="40,40 70,55 40,70 10,55" fill="#4A7A28" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="70,55 100,70 70,85 40,70" fill="#3D6822" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="130,55 160,70 130,85 100,70" fill="#4A7A28" stroke="#2D5016" stroke-width="0.5"/>
+                <polygon points="100,70 130,85 100,100 70,85" fill="#3D6822" stroke="#2D5016" stroke-width="0.5"/>
+                <!-- Ground left/right faces -->
+                <polygon points="70,25 40,40 40,52 70,37" fill="#2D5016"/>
+                <polygon points="130,25 160,40 160,52 130,37" fill="#3B6020"/>
+                <!-- Snake body cubes (green blocks) -->
+                <!-- Segment 3 (tail) -->
+                <polygon points="40,70 70,85 70,97 40,82" fill="#2D8C48"/>
+                <polygon points="70,85 100,70 100,82 70,97" fill="#3BA35A"/>
+                <polygon points="40,70 70,55 100,70 70,85" fill="#50C878"/>
+                <!-- Segment 2 -->
+                <polygon points="70,55 100,70 100,82 70,67" fill="#2D8C48"/>
+                <polygon points="100,70 130,55 130,67 100,82" fill="#3BA35A"/>
+                <polygon points="70,55 100,40 130,55 100,70" fill="#50C878"/>
+                <!-- Head (brighter) -->
+                <polygon points="100,40 130,55 130,67 100,52" fill="#4A8C28"/>
+                <polygon points="130,55 160,40 160,52 130,67" fill="#5DA030"/>
+                <polygon points="100,40 130,25 160,40 130,55" fill="#7EC850"/>
+                <!-- Head eyes -->
+                <circle cx="143" cy="37" r="3" fill="white"/>
+                <circle cx="152" cy="35" r="3" fill="white"/>
+                <circle cx="144" cy="37" r="1.5" fill="#000"/>
+                <circle cx="153" cy="35" r="1.5" fill="#000"/>
+                <!-- Apple (red cube) -->
+                <polygon points="40,40 70,55 70,67 40,52" fill="#AA2020"/>
+                <polygon points="70,55 100,40 100,52 70,67" fill="#CC2E2E"/>
+                <polygon points="40,40 70,25 100,40 70,55" fill="#FF3B3B"/>
+                <!-- Leaf -->
+                <polygon points="70,25 80,15 90,22 78,30" fill="#50C878"/>
+            </svg>
+        </div>
+        <div class="game-card-body">
+            <h3 class="game-card-title">Snake</h3>
+            <p class="game-card-desc">Guide your blocky voxel snake through an isometric world. Eat apples, grow long, and avoid yourself!</p>
+            <div class="game-card-footer">
+                <span class="game-card-score" id="snake-best">Best: ---</span>
+                <button class="btn btn-primary btn-sm">Play ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Card -->
+    <div class="game-card" onclick="window.location.href='/games/memory/'" id="card-memory">
+        <div class="game-card-image" id="memory-card-img" style="
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 100%);
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; flex-wrap: wrap; padding: 16px;
+        ">
+            <!-- Memory card grid preview -->
+            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                <!-- 4x4 card grid preview (8 face-down, 8 showing symbols) -->
+                <!-- Row 1 -->
+                <rect x="8"  y="8"  width="40" height="34" rx="3" fill="#1E2A3A" stroke="#3B3B3B" stroke-width="2"/>
+                <text x="28" y="31" text-anchor="middle" font-size="18">🤖</text>
+                <rect x="54" y="8"  width="40" height="34" rx="3" fill="#1E2A3A" stroke="#3B3B3B" stroke-width="2"/>
+                <text x="74" y="31" text-anchor="middle" font-size="18">💻</text>
+                <rect x="100" y="8" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="120" y="28" text-anchor="middle" font-size="14">⛏️</text>
+                <rect x="146" y="8" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="166" y="28" text-anchor="middle" font-size="14">⛏️</text>
+                <!-- Row 2 -->
+                <rect x="8"  y="48" width="40" height="34" rx="3" fill="#1A3A22" stroke="#50C878" stroke-width="2"/>
+                <text x="28" y="71" text-anchor="middle" font-size="18">🤖</text>
+                <rect x="54" y="48" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="74" y="68" text-anchor="middle" font-size="14">⛏️</text>
+                <rect x="100" y="48" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="120" y="68" text-anchor="middle" font-size="14">⛏️</text>
+                <rect x="146" y="48" width="40" height="34" rx="3" fill="#1E2A3A" stroke="#3B3B3B" stroke-width="2"/>
+                <text x="166" y="71" text-anchor="middle" font-size="18">🚀</text>
+                <!-- Row 3 -->
+                <rect x="8"  y="88" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="28" y="108" text-anchor="middle" font-size="14">⛏️</text>
+                <rect x="54" y="88" width="40" height="34" rx="3" fill="#1A3A22" stroke="#50C878" stroke-width="2"/>
+                <text x="74" y="111" text-anchor="middle" font-size="18">💻</text>
+                <rect x="100" y="88" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="120" y="108" text-anchor="middle" font-size="14">⛏️</text>
+                <rect x="146" y="88" width="40" height="34" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="166" y="108" text-anchor="middle" font-size="14">⛏️</text>
+                <!-- Row 4 -->
+                <rect x="8"  y="128" width="40" height="28" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="28" y="147" text-anchor="middle" font-size="12">⛏️</text>
+                <rect x="54" y="128" width="40" height="28" rx="3" fill="#1E2A3A" stroke="#3B3B3B" stroke-width="2"/>
+                <text x="74" y="149" text-anchor="middle" font-size="16">⚡</text>
+                <rect x="100" y="128" width="40" height="28" rx="3" fill="#253549" stroke="#5D8C3E" stroke-width="2"/>
+                <text x="120" y="147" text-anchor="middle" font-size="12">⛏️</text>
+                <rect x="146" y="128" width="40" height="28" rx="3" fill="#1E2A3A" stroke="#3B3B3B" stroke-width="2"/>
+                <text x="166" y="149" text-anchor="middle" font-size="16">⚡</text>
+            </svg>
+        </div>
+        <div class="game-card-body">
+            <h3 class="game-card-title">Memory</h3>
+            <p class="game-card-desc">Flip cards and match tech-themed emoji pairs. Test your memory and find all 8 pairs in the fewest moves!</p>
+            <div class="game-card-footer">
+                <span class="game-card-score" id="memory-best">Best: ---</span>
+                <button class="btn btn-primary btn-sm">Play ▶</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ====== LEADERBOARD ====== -->
+<div class="leaderboard" id="leaderboard-section">
+    <h2 class="leaderboard-title">🏆 Top Scores</h2>
+
+    <!-- Tetris Leaderboard -->
+    <h3 class="section-header" style="font-size: 0.7rem; margin-top: 16px;">Tetris</h3>
+    <table class="leaderboard-table" id="tetris-leaderboard">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="4" style="text-align:center; color: var(--stone-gray); font-size: 0.8rem;">No scores yet — be the first!</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Water Sort Leaderboard -->
+    <h3 class="section-header" style="font-size: 0.7rem; margin-top: 32px;">Water Sort</h3>
+    <table class="leaderboard-table" id="watersort-leaderboard">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="4" style="text-align:center; color: var(--stone-gray); font-size: 0.8rem;">No scores yet — be the first!</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Snake Leaderboard -->
+    <h3 class="section-header" style="font-size: 0.7rem; margin-top: 32px;">Snake</h3>
+    <table class="leaderboard-table" id="snake-leaderboard">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="4" style="text-align:center; color: var(--stone-gray); font-size: 0.8rem;">No scores yet — be the first!</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Memory Leaderboard -->
+    <h3 class="section-header" style="font-size: 0.7rem; margin-top: 32px;">Memory</h3>
+    <table class="leaderboard-table" id="memory-leaderboard">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="4" style="text-align:center; color: var(--stone-gray); font-size: 0.8rem;">No scores yet — be the first!</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ====== AUTH MODAL ====== -->
+<div class="modal-overlay" id="auth-modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="hideAuthModal()">✕</button>
+        <h2 class="modal-title" id="modal-title">Log In</h2>
+        <div class="modal-error" id="modal-error"></div>
+        <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+            <div class="mc-input-group">
+                <label for="auth-username">Username</label>
+                <input type="text" class="mc-input" id="auth-username" placeholder="Steve" required minlength="3" maxlength="20" autocomplete="username">
+            </div>
+            <div class="mc-input-group">
+                <label for="auth-password">Password</label>
+                <input type="password" class="mc-input" id="auth-password" placeholder="••••••" required minlength="4" autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;" id="auth-submit-btn">Log In</button>
+        </form>
+        <div class="modal-footer mt-md">
+            <span id="modal-switch-text">Don't have an account?</span>
+            <a id="modal-switch-link" onclick="toggleAuthMode()">Sign Up</a>
+        </div>
+    </div>
+</div>
+
+<!-- ====== MINECRAFT SERVER SECTION ====== -->
+<div style="
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 0 24px;
+    text-align: center;
+">
+    <h2 class="section-header">🌐 Our Minecraft Server</h2>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="minecraft://?addExternalServer=MyServer|example.com:25565"
+           class="btn btn-primary"
+           id="join-server-btn"
+           style="font-size: 0.6rem;">
+            ⚔️ Join Minecraft Server
+        </a>
+    </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer style="
+    text-align: center;
+    padding: 24px;
+    margin-top: 48px;
+    border-top: 4px solid var(--grass-dark);
+    background: linear-gradient(180deg, #1A1108 0%, #0D0D0D 100%);
+">
+    <p style="font-family: var(--font-pixel); font-size: 0.5rem; color: var(--stone-gray);">
+        ⛏️ CraftMine Arcade — Built block by block
+    </p>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script>
+    // ====== Load leaderboards on page load ======
+    async function loadLeaderboards() {
+        try {
+            // Tetris leaderboard
+            const tetrisRes = await fetch('/api/scores/tetris?limit=5');
+            const tetrisData = await tetrisRes.json();
+            renderLeaderboard('tetris-leaderboard', tetrisData.leaderboard);
+
+            // Water Sort leaderboard
+            const wsRes = await fetch('/api/scores/water-sort?limit=5');
+            const wsData = await wsRes.json();
+            renderLeaderboard('watersort-leaderboard', wsData.leaderboard);
+
+            // Snake leaderboard
+            const snakeRes = await fetch('/api/scores/snake?limit=5');
+            const snakeData = await snakeRes.json();
+            renderLeaderboard('snake-leaderboard', snakeData.leaderboard);
+
+            // Memory leaderboard
+            const memRes = await fetch('/api/scores/memory?limit=5');
+            const memData = await memRes.json();
+            renderLeaderboard('memory-leaderboard', memData.leaderboard);
+        } catch (err) {
+            console.log('Could not load leaderboards:', err);
+        }
+    }
+
+    function renderLeaderboard(tableId, scores) {
+        const table = document.getElementById(tableId);
+        const tbody = table.querySelector('tbody');
+        if (!scores || scores.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--stone-gray); font-size: 0.8rem;">No scores yet — be the first!</td></tr>';
+            return;
+        }
+        tbody.innerHTML = scores.map(s => {
+            const rankClass = s.rank <= 3 ? ` class="rank-${s.rank}"` : '';
+            const medal = s.rank === 1 ? '🥇' : s.rank === 2 ? '🥈' : s.rank === 3 ? '🥉' : s.rank;
+            return `<tr${rankClass}>
+                <td>${medal}</td>
+                <td>${s.username}</td>
+                <td>${s.score.toLocaleString()}</td>
+                <td>${s.level}</td>
+            </tr>`;
+        }).join('');
+    }
+
+    // Load personal bests if logged in
+    async function loadPersonalBests() {
+        const token = localStorage.getItem('craftmine_token');
+        if (!token) return;
+        try {
+            const headers = { 'Authorization': 'Bearer ' + token };
+            const [tRes, wRes, sRes, mRes] = await Promise.all([
+                fetch('/api/scores/tetris/me', { headers }),
+                fetch('/api/scores/water-sort/me', { headers }),
+                fetch('/api/scores/snake/me', { headers }),
+                fetch('/api/scores/memory/me', { headers })
+            ]);
+            const tData = await tRes.json();
+            const wData = await wRes.json();
+            const sData = await sRes.json();
+            const mData = await mRes.json();
+            if (tData.best) {
+                document.getElementById('tetris-best').textContent = 'High Score: ' + tData.best.score.toLocaleString();
+            }
+            if (wData.best) {
+                document.getElementById('watersort-best').textContent = 'High Score: ' + wData.best.score.toLocaleString();
+            }
+            if (sData.best) {
+                document.getElementById('snake-best').textContent = 'Best: ' + sData.best.score.toLocaleString();
+            }
+            if (mData.best) {
+                document.getElementById('memory-best').textContent = 'Best: ' + mData.best.score.toLocaleString();
+            }
+        } catch (err) {
+            console.log('Could not load personal bests:', err);
+        }
+    }
+
+    // Initialize
+    loadLeaderboards();
+    loadPersonalBests();
+
+    // ====== Parallax scroll effect ======
+    const parallaxHero = document.getElementById('parallax-hero');
+    const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        const heroHeight = parallaxHero ? parallaxHero.offsetHeight : 600;
+        // Only animate while hero is in view
+        if (scrollY < heroHeight + 200) {
+            parallaxLayers.forEach(layer => {
+                const speed = parseFloat(layer.dataset.speed) || 0;
+                // Negative direction: layers move UP as user scrolls DOWN
+                // Lower speed = moves less (background), higher = moves more (foreground)
+                const yOffset = -(scrollY * speed);
+                layer.style.transform = `translateY(${yOffset}px)`;
+            });
+        }
+    }
+
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    updateParallax();
+</script>
+
+</body>
+</html>

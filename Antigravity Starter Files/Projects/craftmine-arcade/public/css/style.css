@@ -1,0 +1,901 @@
+/* =============================================================
+   CraftMine Arcade — Global Minecraft Theme
+   Colors: grass green, dirt brown, stone gray, obsidian black
+   Font: "Press Start 2P" (pixel), fallback sans-serif
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ----- CSS Custom Properties (Design Tokens) ----- */
+:root {
+    /* Core Minecraft palette */
+    --grass-green: #5D8C3E;
+    --grass-light: #7EC850;
+    --grass-dark: #3B5E28;
+    --dirt-brown: #8B6914;
+    --dirt-dark: #6B4F10;
+    --dirt-light: #A37B1E;
+    --stone-gray: #7F7F7F;
+    --stone-dark: #5A5A5A;
+    --stone-light: #A0A0A0;
+    --obsidian: #0D0D0D;
+    --bedrock: #1A1A2E;
+    --creeper-green: #50C878;
+    --diamond-blue: #4AEDD9;
+    --gold-yellow: #FCDC5F;
+    --redstone: #FF3B3B;
+    --lava-orange: #FF6723;
+    --ender-purple: #A020F0;
+
+    /* UI colors */
+    --bg-primary: #1A1A2E;
+    --bg-secondary: #16213E;
+    --bg-card: #1E2A3A;
+    --bg-card-hover: #253549;
+    --text-primary: #E0E0E0;
+    --text-secondary: #A0A0A0;
+    --text-heading: #7EC850;
+    --border-color: #3B3B3B;
+    --border-highlight: #5D8C3E;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+
+    /* Font */
+    --font-pixel: 'Press Start 2P', monospace;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+}
+
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    image-rendering: pixelated;
+    overflow-x: hidden;
+}
+
+/* Subtle pixel grid texture background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Pleasing geometric pixel grid */
+    background-size: 24px 24px;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ----- Typography ----- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-pixel);
+    color: var(--text-heading);
+    text-shadow: 2px 2px 0 var(--obsidian), 4px 4px 0 rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+h1 { font-size: 1.5rem; line-height: 2; }
+h2 { font-size: 1.1rem; line-height: 1.8; }
+h3 { font-size: 0.9rem; line-height: 1.6; }
+
+a {
+    color: var(--diamond-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--creeper-green);
+}
+
+/* ----- Scrollbar (Minecraft stone style) ----- */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bedrock);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--stone-gray);
+    border: 2px solid var(--bedrock);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--stone-light);
+}
+
+/* =============================================================
+   NAVBAR
+   ============================================================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(180deg, #2D1B0E 0%, #1A1108 100%);
+    border-bottom: 4px solid var(--grass-green);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.navbar-logo {
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    color: var(--grass-light);
+    text-shadow: 2px 2px 0 #000, 0 0 10px rgba(126, 200, 80, 0.3);
+    cursor: pointer;
+    transition: text-shadow 0.3s;
+}
+
+.navbar-logo:hover {
+    text-shadow: 2px 2px 0 #000, 0 0 20px rgba(126, 200, 80, 0.6);
+}
+
+.navbar-logo span {
+    color: var(--dirt-light);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.navbar-user {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--gold-yellow);
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* =============================================================
+   BUTTONS (Minecraft stone/grass block style)
+   ============================================================= */
+.btn {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    padding: 10px 20px;
+    border: 3px solid;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.15s ease;
+    outline: none;
+    /* Minecraft button 3D bevel */
+    image-rendering: pixelated;
+}
+
+/* Primary button — grass green */
+.btn-primary {
+    background: linear-gradient(180deg, var(--grass-light) 0%, var(--grass-green) 50%, var(--grass-dark) 100%);
+    border-color: var(--grass-dark);
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.2),
+        inset 0 -2px 0 rgba(0,0,0,0.3),
+        0 2px 8px rgba(0,0,0,0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(180deg, #8ED860 0%, var(--grass-light) 50%, var(--grass-green) 100%);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.3),
+        inset 0 -2px 0 rgba(0,0,0,0.3),
+        0 4px 16px rgba(126, 200, 80, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow:
+        inset 0 2px 0 rgba(0,0,0,0.2),
+        inset 0 -1px 0 rgba(255,255,255,0.1);
+}
+
+/* Secondary button — stone gray */
+.btn-secondary {
+    background: linear-gradient(180deg, var(--stone-light) 0%, var(--stone-gray) 50%, var(--stone-dark) 100%);
+    border-color: var(--stone-dark);
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.15),
+        inset 0 -2px 0 rgba(0,0,0,0.3),
+        0 2px 8px rgba(0,0,0,0.4);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(180deg, #B8B8B8 0%, var(--stone-light) 50%, var(--stone-gray) 100%);
+    transform: translateY(-1px);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.25),
+        inset 0 -2px 0 rgba(0,0,0,0.3),
+        0 4px 16px rgba(127, 127, 127, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow:
+        inset 0 2px 0 rgba(0,0,0,0.2),
+        inset 0 -1px 0 rgba(255,255,255,0.1);
+}
+
+/* Danger button — redstone */
+.btn-danger {
+    background: linear-gradient(180deg, #FF6B6B 0%, var(--redstone) 50%, #CC2E2E 100%);
+    border-color: #CC2E2E;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.2),
+        inset 0 -2px 0 rgba(0,0,0,0.3),
+        0 2px 8px rgba(0,0,0,0.4);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(180deg, #FF8A8A 0%, #FF6B6B 50%, var(--redstone) 100%);
+    transform: translateY(-1px);
+}
+
+/* Small button variant */
+.btn-sm {
+    font-size: 0.5rem;
+    padding: 6px 14px;
+}
+
+/* =============================================================
+   GAME CARDS (Inventory slot style)
+   ============================================================= */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.game-card {
+    background: linear-gradient(135deg, #1E2A3A 0%, #162032 100%);
+    border: 4px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Minecraft inventory slot feel */
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,0.05),
+        0 4px 20px rgba(0,0,0,0.4);
+}
+
+.game-card:hover {
+    border-color: var(--grass-green);
+    transform: translateY(-4px);
+    box-shadow:
+        inset 0 0 0 2px rgba(126, 200, 80, 0.1),
+        0 8px 30px rgba(0,0,0,0.5),
+        0 0 20px rgba(93, 140, 62, 0.15);
+}
+
+.game-card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--border-color);
+    position: relative;
+}
+
+/* Pixel overlay effect on card images */
+.game-card-image::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(0,0,0,0.05) 3px,
+            rgba(0,0,0,0.05) 4px
+        );
+    pointer-events: none;
+}
+
+.game-card-body {
+    padding: var(--space-lg);
+}
+
+.game-card-title {
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--gold-yellow);
+    margin-bottom: var(--space-sm);
+    text-shadow: 1px 1px 0 #000;
+}
+
+.game-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+}
+
+.game-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-card-score {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--diamond-blue);
+}
+
+/* =============================================================
+   AUTH MODAL
+   ============================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: linear-gradient(180deg, #2A1F14 0%, #1A1108 100%);
+    border: 4px solid var(--grass-green);
+    padding: var(--space-xl);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(93, 140, 62, 0.2), 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.modal-title {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    color: var(--grass-light);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: none;
+    border: none;
+    color: var(--redstone);
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #FF8A8A;
+}
+
+/* Form inputs — Minecraft crafting table style */
+.mc-input-group {
+    margin-bottom: var(--space-md);
+}
+
+.mc-input-group label {
+    display: block;
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+}
+
+.mc-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: var(--obsidian);
+    border: 3px solid var(--stone-dark);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.mc-input:focus {
+    border-color: var(--grass-green);
+    box-shadow: 0 0 10px rgba(93, 140, 62, 0.2);
+}
+
+.mc-input::placeholder {
+    color: var(--stone-gray);
+}
+
+.modal-error {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--redstone);
+    text-align: center;
+    margin-bottom: var(--space-md);
+    min-height: 1.2em;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: var(--space-md);
+}
+
+.modal-footer a {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--diamond-blue);
+    cursor: pointer;
+}
+
+.modal-footer a:hover {
+    color: var(--creeper-green);
+}
+
+/* =============================================================
+   LEADERBOARD TABLE
+   ============================================================= */
+.leaderboard {
+    max-width: 800px;
+    margin: var(--space-xl) auto;
+    padding: 0 var(--space-xl);
+}
+
+.leaderboard-title {
+    font-family: var(--font-pixel);
+    font-size: 0.85rem;
+    color: var(--gold-yellow);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(30, 42, 58, 0.8);
+    border: 3px solid var(--border-color);
+}
+
+.leaderboard-table th {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    color: var(--grass-light);
+    padding: var(--space-md);
+    border-bottom: 3px solid var(--border-color);
+    text-align: left;
+}
+
+.leaderboard-table td {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid rgba(59, 59, 59, 0.5);
+    color: var(--text-primary);
+}
+
+.leaderboard-table tr:hover td {
+    background: rgba(93, 140, 62, 0.08);
+}
+
+.leaderboard-table .rank-1 td { color: var(--gold-yellow); }
+.leaderboard-table .rank-2 td { color: var(--stone-light); }
+.leaderboard-table .rank-3 td { color: #CD7F32; }
+
+/* =============================================================
+   PARALLAX HERO (Minecraft.net-style layered scene)
+   ============================================================= */
+.parallax-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    max-height: 900px;
+    overflow: hidden;
+    /* Sky blue fallback matching the Sky_Sun.png background */
+    background: linear-gradient(180deg, #78A7FF 0%, #A8C8FF 100%);
+}
+
+/* Each parallax layer stacks from the bottom, full-width */
+.parallax-layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    will-change: transform;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+}
+
+/* All scene images stretch full width, keep natural aspect ratio */
+.parallax-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+/* Sky layer — fills entire container from the top */
+.parallax-sky {
+    top: 0;
+    z-index: 1;
+    height: 100%;
+}
+
+.parallax-sky .parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Clouds layer — sits below sky, drifts horizontally */
+.parallax-clouds {
+    top: 0;
+    z-index: 2;
+    height: 100%;
+    animation: cloudDrift 80s linear infinite;
+}
+
+.parallax-clouds .parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+@keyframes cloudDrift {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(-20px); }
+    100% { transform: translateX(0); }
+}
+
+/* Background hills — fills entire hero, shows scenic upper portion */
+.parallax-bg {
+    top: 0;
+    z-index: 3;
+    height: 100%;
+}
+
+.parallax-bg .parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+/* Cherry blossom focus — main scenic layer, shows cherry trees & buildings */
+.parallax-focus {
+    top: 0;
+    z-index: 4;
+    height: 100%;
+}
+
+.parallax-focus .parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+/* Foreground — closest blocks, shows cave entrance with moss */
+.parallax-foreground {
+    top: 0;
+    z-index: 5;
+    height: 100%;
+}
+
+.parallax-foreground .parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+/* Title overlay — centered in the scene */
+.parallax-content {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 15vh;
+    /* Focused dark glow behind title text */
+    background: radial-gradient(
+        ellipse 60% 40% at center 40%,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+.parallax-title {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow:
+        3px 3px 0 #000,
+        6px 6px 0 rgba(0,0,0,0.3),
+        0 0 30px rgba(126, 200, 80, 0.4);
+    animation: titleFloat 3s ease-in-out infinite;
+    margin-bottom: 12px;
+}
+
+.parallax-subtitle {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 2px 2px 0 #000, 0 0 10px rgba(0,0,0,0.5);
+    line-height: 2;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Bottom gradient fade into page background */
+.parallax-fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 150px;
+    z-index: 11;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(26, 26, 46, 0.4) 30%,
+        rgba(26, 26, 46, 0.8) 60%,
+        var(--bg-primary) 100%
+    );
+    pointer-events: none;
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* =============================================================
+   SECTION HEADERS
+   ============================================================= */
+.section-header {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    color: var(--grass-light);
+    text-align: center;
+    margin: var(--space-xxl) 0 var(--space-lg);
+    text-shadow: 2px 2px 0 #000;
+    position: relative;
+}
+
+.section-header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--grass-green);
+    margin: var(--space-sm) auto 0;
+}
+
+/* =============================================================
+   GAME PAGE SHARED STYLES
+   ============================================================= */
+.game-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(180deg, #2D1B0E 0%, #1A1108 100%);
+    border-bottom: 4px solid var(--grass-green);
+}
+
+.game-header-title {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    color: var(--grass-light);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.game-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-lg);
+}
+
+/* Title/Instructions screen overlay */
+.title-screen {
+    text-align: center;
+    padding: var(--space-xxl);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title-screen h1 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+}
+
+.how-to-play {
+    background: rgba(30, 42, 58, 0.8);
+    border: 3px solid var(--border-color);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+    text-align: left;
+}
+
+.how-to-play h3 {
+    font-size: 0.7rem;
+    margin-bottom: var(--space-md);
+    color: var(--gold-yellow);
+}
+
+.how-to-play ul {
+    list-style: none;
+    padding: 0;
+}
+
+.how-to-play li {
+    padding: var(--space-xs) 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.how-to-play li kbd {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    background: var(--stone-dark);
+    border: 2px solid var(--stone-gray);
+    padding: 2px 8px;
+    color: var(--text-primary);
+    margin-right: 4px;
+    display: inline-block;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3);
+}
+
+/* Game Over overlay */
+.game-over-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 500;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.game-over-overlay.active {
+    display: flex;
+}
+
+.game-over-box {
+    background: linear-gradient(180deg, #2A1F14 0%, #1A1108 100%);
+    border: 4px solid var(--redstone);
+    padding: var(--space-xxl);
+    text-align: center;
+    max-width: 420px;
+    box-shadow: 0 0 40px rgba(255, 59, 59, 0.15);
+}
+
+.game-over-box h2 {
+    color: var(--redstone);
+    font-size: 1.2rem;
+    margin-bottom: var(--space-lg);
+}
+
+.game-over-score {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--gold-yellow);
+    margin-bottom: var(--space-md);
+}
+
+.game-over-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* Pause overlay */
+.pause-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 400;
+    justify-content: center;
+    align-items: center;
+}
+
+.pause-overlay.active {
+    display: flex;
+}
+
+.pause-text {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: var(--gold-yellow);
+    text-shadow: 2px 2px 0 #000;
+    animation: titleFloat 2s ease-in-out infinite;
+}
+
+/* =============================================================
+   UTILITIES
+   ============================================================= */
+.text-center { text-align: center; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-md { margin-bottom: var(--space-md); }
+.hidden { display: none !important; }
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 768px) {
+    .parallax-hero { height: 55vh; min-height: 380px; }
+    .parallax-title { font-size: 1.4rem; }
+    .parallax-subtitle { font-size: 0.5rem; }
+    .parallax-content { padding-top: 8vh; }
+    .game-grid { grid-template-columns: 1fr; padding: var(--space-md); }
+    .navbar { padding: var(--space-sm) var(--space-md); }
+    .navbar-logo { font-size: 0.8rem; }
+    .btn { font-size: 0.55rem; padding: 8px 14px; }
+}
+
+@media (max-width: 480px) {
+    .parallax-hero { height: 45vh; min-height: 300px; }
+    .parallax-title { font-size: 1rem; }
+    .parallax-content { padding-top: 6vh; }
+    .game-card-image { height: 150px; }
+}

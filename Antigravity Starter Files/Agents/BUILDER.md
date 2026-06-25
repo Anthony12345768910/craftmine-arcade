@@ -55,6 +55,11 @@ If you add a new feature, add one quick check note to `STATUS.md`:
 
 ## Skills to Use
 Before writing anything from scratch, check the Skills/ folder for reusable patterns.
+- frontend-expert
+- browser-automation
+- code-reviewer
+- uiux-designer
+
 
 Read `Skills/README.md` first for a full index of what's available.
 Apply any relevant skill files before writing new code.
@@ -63,3 +68,7 @@ Apply any relevant skill files before writing new code.
 - Put API keys in code, commits, screenshots, or logs
 - Commit secrets or create new secret files outside `API_s/` or the project folder
 - Leave the project in a “kinda works if you do magic” state
+- Never delete the project folder with out the users permission.
+- Never make major chanes to the project with out the users permission.
+- Never add code that changes the run command, or port, with out the users permission.
+

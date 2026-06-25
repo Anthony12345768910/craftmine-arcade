@@ -69,7 +69,7 @@ YYYY-MM-DD — [FILL: what changed, one line]
 YYYY-MM-DD — [FILL: what changed, one line]
 
 # Global Guidelines
-
+Put a comment at least every 50-150 lines of code.
 Build a working prototype early. Improve later.
 Keep changes small and testable.
 If something is ambiguous, make a reasonable decision and log it in CHANGELOG.md.
