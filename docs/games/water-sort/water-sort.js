@@ -109,10 +109,11 @@ function canPour(srcIdx, dstIdx) {
     // Can pour into empty tube
     if (dst.length === 0) return true;
 
-    // Top colors must match
-    const srcTop = src[src.length - 1];
-    const dstTop = dst[dst.length - 1];
-    return srcTop === dstTop;
+    // Top colors must match (REMOVED: User requested easier mode)
+    // const srcTop = src[src.length - 1];
+    // const dstTop = dst[dst.length - 1];
+    // return srcTop === dstTop;
+    return true; // Allow pouring onto any color
 }
 
 // Perform a pour: move matching top layers from src to dst
