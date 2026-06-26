@@ -1,15 +1,18 @@
 - Goal today: Build full working prototype of CraftMine Arcade
-- Current milestone: Milestone 5 — Integration & Polish (COMPLETE)
+- Current milestone: Milestone 6 — Minecraft Music Player (COMPLETE)
 - Working now: Everything!
   - ✅ Homepage with game cards + leaderboards
   - ✅ Auth (signup, login, logout) via JWT
   - ✅ Tetris with SRS rotation, wall kicks, scoring, levels, next piece preview
   - ✅ Water Sort with pour logic, undo, level progression, scoring
-  - ✅ Score submission from both games
+  - ✅ Snake (isometric voxel)
+  - ✅ Memory card matching game
+  - ✅ Score submission from all games
   - ✅ Leaderboard display on homepage
   - ✅ Back to Arcade buttons on all game pages
   - ✅ Minecraft theme (pixel fonts, blocky UI, green/brown/gray palette)
+  - ✅ Minecraft music player — floating widget, 8 C418 tracks, play/pause/skip/volume, localStorage persistence
 - Broken now: Nothing
 - Next action: Add more games or polish further
-- Last QA pass: 2026-06-23 — PASS (full browser verification)
+- Last QA pass: 2026-06-25 — Music player added, all pages verified
 - Last security pass: N/A (no secrets in code; keys.env pattern ready)

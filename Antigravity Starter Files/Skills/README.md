@@ -25,6 +25,9 @@ Add a new row every time you create a skill file.
 - `frontend-expert/SKILL.md` — Frontend expertise for architecture, React/Next.js patterns, performance, and best practices.
 - `browser-automation/SKILL.md` — Tools and patterns for interacting with web browsers and web scraping.
 - `code-reviewer/SKILL.md` — Advanced code review guidelines and heuristics.
+- `data-analyst/SKILL.md` — Statistical methods and data storytelling for actionable insights.
+- `sympy/SKILL.md` — Symbolic math in Python for solving equations and calculus.
+- `biopython/SKILL.md` — Biological computation, sequence manipulation, and NCBI database access.
 
 # Skill File Template
 When creating a new skill, copy this format into a new .md file:

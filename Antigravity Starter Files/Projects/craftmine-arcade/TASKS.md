@@ -29,3 +29,13 @@
 - [ ] Leaderboards display on homepage
 - [ ] Back to Arcade buttons on all games
 - [ ] Final QA pass
+
+## Milestone 6: Minecraft Music Player
+- [x] Create public/js/music.js — self-contained floating music widget
+- [x] Stream 8 C418 tracks from Archive.org (Sweden, Wet Hands, Mice on Venus, Clark, Subwoofer Lullaby, Living Mice, Haggstrom, Minecraft Title)
+- [x] Play/pause, prev/next track, volume slider controls
+- [x] Persist play state, current track, and volume in localStorage
+- [x] Auto-advance to next track when current track ends
+- [x] Resume playback when navigating between pages
+- [x] Collapsible widget (shows only 🎵 icon when collapsed)
+- [x] Inject music.js into all 5 pages: homepage + 4 game pages

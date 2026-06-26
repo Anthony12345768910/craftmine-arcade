@@ -16,7 +16,10 @@ A Minecraft-themed web arcade featuring classic games with pixelated aesthetics,
 - `public/index.html` — Arcade homepage
 - `public/games/tetris/` — Tetris game
 - `public/games/water-sort/` — Water Sort puzzle game
+- `public/games/snake/` — Snake game
+- `public/games/memory/` — Memory card game
 - `public/js/auth.js` — Login/signup client logic
+- `public/js/music.js` — Minecraft music player widget (streams C418 OST)
 - `public/css/style.css` — Global Minecraft theme
 - `data/` — JSON-file database (users + scores)
 
@@ -27,3 +30,8 @@ A Minecraft-themed web arcade featuring classic games with pixelated aesthetics,
 - auth-implementation-patterns (JWT login)
 - uiux-designer (Minecraft theme design)
 - frontend-expert (component organization)
+
+## Music
+The arcade plays C418's Minecraft OST (Sweden, Wet Hands, Mice on Venus, etc.) streamed
+from Archive.org. A floating widget in the bottom-right corner lets players play/pause,
+skip tracks, and control volume. State persists across page navigation via localStorage.
